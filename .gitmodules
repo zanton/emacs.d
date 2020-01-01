@@ -1,0 +1,24 @@
+[submodule "lisp/dash"]
+	path = lisp/dash
+	url = https://github.com/magnars/dash.el.git
+[submodule "lisp/with-editor"]
+	path = lisp/with-editor
+	url = https://github.com/magit/with-editor.git
+[submodule "lisp/ghub"]
+	path = lisp/ghub
+	url = https://github.com/magit/ghub.git
+[submodule "lisp/graphql"]
+	path = lisp/graphql
+	url = https://github.com/vermiculus/graphql.el.git
+[submodule "lisp/treepy"]
+	path = lisp/treepy
+	url = https://github.com/volrath/treepy.el.git
+[submodule "lisp/magit"]
+	path = lisp/magit
+	url = https://github.com/magit/magit.git
+[submodule "lisp/async"]
+	path = lisp/async
+	url = https://github.com/jwiegley/emacs-async.git
+[submodule "lisp/helm"]
+	path = lisp/helm
+	url = https://github.com/emacs-helm/helm.git
