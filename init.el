@@ -24,7 +24,7 @@
 
 ;; Auto-Complete
 (load-file (concat init-dir "/company_mode.el"))
-;(load-file (concat init-dir "/auto_complete.el"))
+(load-file (concat init-dir "/auto_complete.el"))
 
 ;; Magit
 (load-file (concat init-dir "/magit.el"))

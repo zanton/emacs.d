@@ -1,3 +1,9 @@
+[submodule "lisp/company-mode"]
+	path = lisp/company-mode
+	url = https://github.com/company-mode/company-mode.git
+[submodule "lisp/auto-complete"]
+	path = lisp/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git
 [submodule "lisp/dash"]
 	path = lisp/dash
 	url = https://github.com/magnars/dash.el.git
@@ -13,6 +19,9 @@
 [submodule "lisp/treepy"]
 	path = lisp/treepy
 	url = https://github.com/volrath/treepy.el.git
+[submodule "lisp/libegit2"]
+	path = lisp/libegit2
+	url = https://github.com/magit/libegit2.git
 [submodule "lisp/magit"]
 	path = lisp/magit
 	url = https://github.com/magit/magit.git
