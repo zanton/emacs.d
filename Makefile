@@ -6,12 +6,13 @@ lisp:
 	mkdir -p lisp
 
 ## Language modes
-lang_modes: google-c-style markdown-mode cuda-mode cmake-mode
+lang_modes: google-c-style markdown-mode cuda-mode cmake-mode lua-mode
 
 google-c-style: lisp/google-c-style.el
 markdown-mode: lisp/markdown-mode.el
 cuda-mode: lisp/cuda-mode.el
 cmake-mode: lisp/cmake-mode.el
+lua-mode: lisp/lua-mode.el
 
 lisp/google-c-style.el:
 	wget https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el -O $@
@@ -24,6 +25,9 @@ lisp/cuda-mode.el:
 
 lisp/cmake-mode.el:
 	wget https://raw.githubusercontent.com/Kitware/CMake/master/Auxiliary/cmake-mode.el -O $@
+
+lisp/lua-mode.el:
+	wget https://raw.githubusercontent.com/immerrr/lua-mode/master/lua-mode.el -O $@
 
 ## Highlight pkgs
 highlight_pkgs: highlight-symbol breadcrumb symbol-overlay highlight-indent-guides auto-highlight-symbol volatile-highlights bm

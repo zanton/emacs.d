@@ -13,6 +13,7 @@
 (load-file (concat init-dir "/markdown_mode.el"))
 (load-file (concat init-dir "/cuda_mode.el"))
 (load-file (concat init-dir "/cmake_mode.el"))
+(load-file (concat init-dir "/lua_mode.el"))
 
 ;; Highlight
 (load-file (concat init-dir "/highlight_symbol.el"))
