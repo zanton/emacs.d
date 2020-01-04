@@ -168,12 +168,13 @@ lisp/helm-gtags.el:
 	wget https://raw.githubusercontent.com/syohex/emacs-helm-gtags/master/helm-gtags.el -O $@
 
 ## Utility pkgs
-utility_pkgs: thing-edit quickrun popwin flycheck
+utility_pkgs: thing-edit quickrun popwin flycheck undo-tree
 
 thing-edit: lisp/thing-edit.el
 quickrun: lisp/quickrun.el
 popwin: lisp/popwin.el
 flycheck: lisp/flycheck/flycheck.el
+undo-tree: lisp/undo-tree.el
 
 lisp/thing-edit.el:
 	wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/thing-edit.el -O $@
@@ -183,6 +184,9 @@ lisp/quickrun.el:
 
 lisp/popwin.el:
 	wget https://raw.githubusercontent.com/m2ym/popwin-el/master/popwin.el -O $@
+
+lisp/undo-tree.el:
+	wget http://www.dr-qubit.org/undo-tree/undo-tree.el -O $@
 
 lisp/flycheck/flycheck.el:
 	git submodule update --init $(dir $@)

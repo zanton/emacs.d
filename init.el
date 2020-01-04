@@ -41,6 +41,7 @@
 (load-file (concat init-dir "/quickrun.el"))
 ;(load-file (concat init-dir "/popwin.el"))
 (load-file (concat init-dir "/flycheck.el"))
+(load-file (concat init-dir "/undo_tree.el"))
 
 ;;(package-initialize)
 
