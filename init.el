@@ -39,6 +39,7 @@
 (load-file (concat init-dir "/thing_edit.el"))
 (load-file (concat init-dir "/quickrun.el"))
 ;(load-file (concat init-dir "/popwin.el"))
+(load-file (concat init-dir "/flycheck.el"))
 
 ;;(package-initialize)
 

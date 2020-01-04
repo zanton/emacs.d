@@ -34,3 +34,6 @@
 [submodule "lisp/bm"]
 	path = lisp/bm
 	url = https://github.com/joodland/bm.git
+[submodule "lisp/flycheck"]
+	path = lisp/flycheck
+	url = https://github.com/flycheck/flycheck.git

@@ -1,24 +1,17 @@
 magit_ver=2.90.1
 
-all: lisp lang_modes highlight_pkgs thing-edit auto_complete_pkgs magit-$(magit_ver) helm quickrun popwin
+all: lisp lang_modes highlight_pkgs completion_pkgs magit-$(magit_ver) helm utility_pkgs
 
 lisp:
 	mkdir -p lisp
 
+## Language modes
 lang_modes: google-c-style markdown-mode cuda-mode cmake-mode
 
 google-c-style: lisp/google-c-style.el
 markdown-mode: lisp/markdown-mode.el
 cuda-mode: lisp/cuda-mode.el
 cmake-mode: lisp/cmake-mode.el
-
-highlight_pkgs: highlight-symbol breadcrumb symbol-overlay highlight-indent-guides auto-highlight-symbol volatile-highlights bm
-
-highlight-symbol: lisp/highlight-symbol.el
-breadcrumb: lisp/breadcrumb.el
-symbol-overlay: lisp/symbol-overlay.el
-
-thing-edit: lisp/thing-edit.el
 
 lisp/google-c-style.el:
 	wget https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el -O $@
@@ -32,6 +25,17 @@ lisp/cuda-mode.el:
 lisp/cmake-mode.el:
 	wget https://raw.githubusercontent.com/Kitware/CMake/master/Auxiliary/cmake-mode.el -O $@
 
+## Highlight pkgs
+highlight_pkgs: highlight-symbol breadcrumb symbol-overlay highlight-indent-guides auto-highlight-symbol volatile-highlights bm
+
+highlight-symbol: lisp/highlight-symbol.el
+breadcrumb: lisp/breadcrumb.el
+symbol-overlay: lisp/symbol-overlay.el
+highlight-indent-guides: lisp/highlight-indent-guides.el
+auto-highlight-symbol: lisp/auto-highlight-symbol.el
+volatile-highlights: lisp/volatile-highlights.el
+bm: lisp/bm/bm.el
+
 lisp/highlight-symbol.el:
 	wget https://raw.githubusercontent.com/nschum/highlight-symbol.el/master/highlight-symbol.el -O $@
 
@@ -41,10 +45,21 @@ lisp/breadcrumb.el:
 lisp/symbol-overlay.el:
 	wget https://raw.githubusercontent.com/wolray/symbol-overlay/master/symbol-overlay.el -O $@
 
-lisp/thing-edit.el:
-	wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/thing-edit.el -O $@
+lisp/highlight-indent-guides.el:
+	wget https://raw.githubusercontent.com/DarthFennec/highlight-indent-guides/master/highlight-indent-guides.el -O $@
 
-auto_complete_pkgs: company-mode auto-complete
+lisp/auto-highlight-symbol.el:
+	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol.el -O $@
+	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol-config.el -c -P $(dir $@)
+
+lisp/volatile-highlights.el:
+	wget https://raw.githubusercontent.com/k-talo/volatile-highlights.el/master/volatile-highlights.el -O $@
+
+lisp/bm/bm.el:
+	git submodule update --init $(dir $@)
+
+## Completion pkgs
+completion_pkgs: company-mode auto-complete
 
 company-mode: lisp/company-mode/company.el
 auto-complete: lisp/auto-complete/auto-complete.el popup
@@ -59,6 +74,7 @@ lisp/auto-complete/auto-complete.el:
 lisp/popup.el:
 	wget https://raw.githubusercontent.com/auto-complete/popup-el/master/popup.el -O $@
 
+## Magit
 magit: dash with-editor ghub graphql treepy libegit2 transient lisp/magit/lisp/magit.el
 
 lisp/magit/lisp/magit.el:
@@ -125,54 +141,44 @@ lisp/transient.el:
 lisp/magit-popup.el:
 	wget https://raw.githubusercontent.com/magit/magit-popup/master/magit-popup.el -O $@
 
+## Helm
 helm: async lisp/helm/helm.el helm-swoop helm-gtags
+
+async: lisp/async/async.el
+
+lisp/async/async.el:
+	git submodule update --init $(dir $@)
 
 lisp/helm/helm.el:
 	git submodule update --init $(dir $@)
 	cd $(dir $@); EMACSLOADPATH="$(PWD)/lisp/async:" make
 
-async: lisp/async/async.el
-
 helm-swoop: lisp/helm-swoop.el
+
+lisp/helm-swoop.el:
+	wget https://raw.githubusercontent.com/emacsorphanage/helm-swoop/master/helm-swoop.el -O $@
 
 helm-gtags: lisp/helm-gtags.el
 
 lisp/helm-gtags.el:
 	wget https://raw.githubusercontent.com/syohex/emacs-helm-gtags/master/helm-gtags.el -O $@
 
-lisp/helm-swoop.el:
-	wget https://raw.githubusercontent.com/emacsorphanage/helm-swoop/master/helm-swoop.el -O $@
+## Utility pkgs
+utility_pkgs: thing-edit quickrun popwin flycheck
 
-lisp/async/async.el:
-	git submodule update --init $(dir $@)
-
-highlight-indent-guides: lisp/highlight-indent-guides.el
-
-lisp/highlight-indent-guides.el:
-	wget https://raw.githubusercontent.com/DarthFennec/highlight-indent-guides/master/highlight-indent-guides.el -O $@
-
+thing-edit: lisp/thing-edit.el
 quickrun: lisp/quickrun.el
+popwin: lisp/popwin.el
+flycheck: lisp/flycheck/flycheck.el
+
+lisp/thing-edit.el:
+	wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/thing-edit.el -O $@
 
 lisp/quickrun.el:
 	wget https://raw.githubusercontent.com/syohex/emacs-quickrun/master/quickrun.el -O $@
 
-popwin: lisp/popwin.el
-
 lisp/popwin.el:
 	wget https://raw.githubusercontent.com/m2ym/popwin-el/master/popwin.el -O $@
 
-auto-highlight-symbol: lisp/auto-highlight-symbol.el
-
-lisp/auto-highlight-symbol.el:
-	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol.el -O $@
-	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol-config.el -c -P $(dir $@)
-
-volatile-highlights: lisp/volatile-highlights.el
-
-lisp/volatile-highlights.el:
-	wget https://raw.githubusercontent.com/k-talo/volatile-highlights.el/master/volatile-highlights.el -O $@
-
-bm: lisp/bm/bm.el
-
-lisp/bm/bm.el:
+lisp/flycheck/flycheck.el:
 	git submodule update --init $(dir $@)
