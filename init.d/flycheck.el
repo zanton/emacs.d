@@ -4,6 +4,7 @@
 ;;
 (add-to-list 'load-path (concat user-emacs-dir "/lisp/flycheck"))
 (require 'flycheck)
+(add-hook 'c-mode-hook 'flycheck-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'latex-mode-hook 'flycheck-mode)
 (add-hook 'python-mode-hook 'flycheck-mode)
