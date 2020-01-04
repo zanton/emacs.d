@@ -125,7 +125,7 @@ lisp/transient.el:
 lisp/magit-popup.el:
 	wget https://raw.githubusercontent.com/magit/magit-popup/master/magit-popup.el -O $@
 
-helm: async lisp/helm/helm.el helm-swoop
+helm: async lisp/helm/helm.el helm-swoop helm-gtags
 
 lisp/helm/helm.el:
 	git submodule update --init $(dir $@)
@@ -134,6 +134,11 @@ lisp/helm/helm.el:
 async: lisp/async/async.el
 
 helm-swoop: lisp/helm-swoop.el
+
+helm-gtags: lisp/helm-gtags.el
+
+lisp/helm-gtags.el:
+	wget https://raw.githubusercontent.com/syohex/emacs-helm-gtags/master/helm-gtags.el -O $@
 
 lisp/helm-swoop.el:
 	wget https://raw.githubusercontent.com/emacsorphanage/helm-swoop/master/helm-swoop.el -O $@

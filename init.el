@@ -23,10 +23,7 @@
 (load-file (concat init-dir "/volatile_highlights.el"))
 (load-file (concat init-dir "/bm.el"))
 
-;; Copy
-(load-file (concat init-dir "/thing_edit.el"))
-
-;; Auto-Complete
+;; Completion
 (load-file (concat init-dir "/company_mode.el"))
 ;(load-file (concat init-dir "/auto_complete.el"))
 
@@ -36,11 +33,11 @@
 ;; Helm
 (load-file (concat init-dir "/helm.el"))
 (load-file (concat init-dir "/helm_swoop.el"))
+(load-file (concat init-dir "/helm_gtags.el"))
 
-;; Quickrun
+;; Utilities
+(load-file (concat init-dir "/thing_edit.el"))
 (load-file (concat init-dir "/quickrun.el"))
-
-;; Popwin
 ;(load-file (concat init-dir "/popwin.el"))
 
 ;;(package-initialize)
