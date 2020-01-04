@@ -103,3 +103,12 @@
 ;; Switch windows
 (global-set-key (kbd "C-o") 'other-window)
 (global-set-key (kbd "C-S-o") 'previous-multiframe-window)
+
+;; Bind C-j to newline (with indent)
+(global-set-key (kbd "C-j") 'newline-and-indent)
+
+;; Compile
+(global-set-key (kbd "C-c p") 'compile)
+
+;; Eval buffer
+(global-set-key (kbd "C-x C-e") 'eval-buffer)

@@ -5,6 +5,10 @@
  '(scroll-bar-mode (quote right))
  '(tool-bar-mode nil))
 
+;; Show line number
+(global-linum-mode t)
+(setq linum-format "%3d ")
+
 ;; Set default font size
 (set-default-font "Ubuntu Mono 11")
 
