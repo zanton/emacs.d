@@ -1,6 +1,6 @@
 magit_ver=2.90.1
 
-all: lisp lang_modes highlight_pkgs thing-edit auto_complete_pkgs magit-$(magit_ver) helm
+all: lisp lang_modes highlight_pkgs thing-edit auto_complete_pkgs magit-$(magit_ver) helm quickrun popwin
 
 lisp:
 	mkdir -p lisp
@@ -12,7 +12,7 @@ markdown-mode: lisp/markdown-mode.el
 cuda-mode: lisp/cuda-mode.el
 cmake-mode: lisp/cmake-mode.el
 
-highlight_pkgs: highlight-symbol breadcrumb symbol-overlay
+highlight_pkgs: highlight-symbol breadcrumb symbol-overlay highlight-indent-guides auto-highlight-symbol volatile-highlights bm
 
 highlight-symbol: lisp/highlight-symbol.el
 breadcrumb: lisp/breadcrumb.el
@@ -21,7 +21,7 @@ symbol-overlay: lisp/symbol-overlay.el
 thing-edit: lisp/thing-edit.el
 
 lisp/google-c-style.el:
-	wget https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el -O lisp/google-c-style.el
+	wget https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el -O $@
 
 lisp/markdown-mode.el:
 	wget https://raw.githubusercontent.com/jrblevin/markdown-mode/master/markdown-mode.el -O $@
@@ -125,7 +125,7 @@ lisp/transient.el:
 lisp/magit-popup.el:
 	wget https://raw.githubusercontent.com/magit/magit-popup/master/magit-popup.el -O $@
 
-helm: async lisp/helm/helm.el
+helm: async lisp/helm/helm.el helm-swoop
 
 lisp/helm/helm.el:
 	git submodule update --init $(dir $@)
@@ -133,5 +133,41 @@ lisp/helm/helm.el:
 
 async: lisp/async/async.el
 
+helm-swoop: lisp/helm-swoop.el
+
+lisp/helm-swoop.el:
+	wget https://raw.githubusercontent.com/emacsorphanage/helm-swoop/master/helm-swoop.el -O $@
+
 lisp/async/async.el:
+	git submodule update --init $(dir $@)
+
+highlight-indent-guides: lisp/highlight-indent-guides.el
+
+lisp/highlight-indent-guides.el:
+	wget https://raw.githubusercontent.com/DarthFennec/highlight-indent-guides/master/highlight-indent-guides.el -O $@
+
+quickrun: lisp/quickrun.el
+
+lisp/quickrun.el:
+	wget https://raw.githubusercontent.com/syohex/emacs-quickrun/master/quickrun.el -O $@
+
+popwin: lisp/popwin.el
+
+lisp/popwin.el:
+	wget https://raw.githubusercontent.com/m2ym/popwin-el/master/popwin.el -O $@
+
+auto-highlight-symbol: lisp/auto-highlight-symbol.el
+
+lisp/auto-highlight-symbol.el:
+	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol.el -O $@
+	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol-config.el -c -P $(dir $@)
+
+volatile-highlights: lisp/volatile-highlights.el
+
+lisp/volatile-highlights.el:
+	wget https://raw.githubusercontent.com/k-talo/volatile-highlights.el/master/volatile-highlights.el -O $@
+
+bm: lisp/bm/bm.el
+
+lisp/bm/bm.el:
 	git submodule update --init $(dir $@)

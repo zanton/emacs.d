@@ -16,21 +16,32 @@
 
 ;; Highlight
 (load-file (concat init-dir "/highlight_symbol.el"))
-(load-file (concat init-dir "/breadcrumb.el"))
+;(load-file (concat init-dir "/breadcrumb.el")) ;; similar to bm.el
 (load-file (concat init-dir "/symbol_overlay.el"))
+(load-file (concat init-dir "/highlight_indent_guides.el"))
+;(load-file (concat init-dir "/auto_highlight_symbol.el")) ;; hijack M-<left> M-<right>
+(load-file (concat init-dir "/volatile_highlights.el"))
+(load-file (concat init-dir "/bm.el"))
 
 ;; Copy
 (load-file (concat init-dir "/thing_edit.el"))
 
 ;; Auto-Complete
 (load-file (concat init-dir "/company_mode.el"))
-(load-file (concat init-dir "/auto_complete.el"))
+;(load-file (concat init-dir "/auto_complete.el"))
 
 ;; Magit
 (load-file (concat init-dir "/magit.el"))
 
 ;; Helm
 (load-file (concat init-dir "/helm.el"))
+(load-file (concat init-dir "/helm_swoop.el"))
+
+;; Quickrun
+(load-file (concat init-dir "/quickrun.el"))
+
+;; Popwin
+;(load-file (concat init-dir "/popwin.el"))
 
 ;;(package-initialize)
 
