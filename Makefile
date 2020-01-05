@@ -168,13 +168,16 @@ lisp/helm-gtags.el:
 	wget https://raw.githubusercontent.com/syohex/emacs-helm-gtags/master/helm-gtags.el -O $@
 
 ## Utility pkgs
-utility_pkgs: thing-edit quickrun popwin flycheck undo-tree
+utility_pkgs: thing-edit quickrun popwin flycheck undo-tree irony company-irony flycheck-irony
 
 thing-edit: lisp/thing-edit.el
 quickrun: lisp/quickrun.el
 popwin: lisp/popwin.el
 flycheck: lisp/flycheck/flycheck.el
 undo-tree: lisp/undo-tree.el
+irony: lisp/irony-mode/irony.el
+company-irony: lisp/company-irony.el
+flycheck-irony: lisp/flycheck-irony.el
 
 lisp/thing-edit.el:
 	wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/thing-edit.el -O $@
@@ -185,8 +188,17 @@ lisp/quickrun.el:
 lisp/popwin.el:
 	wget https://raw.githubusercontent.com/m2ym/popwin-el/master/popwin.el -O $@
 
+lisp/flycheck/flycheck.el:
+	git submodule update --init $(dir $@)
+
 lisp/undo-tree.el:
 	wget http://www.dr-qubit.org/undo-tree/undo-tree.el -O $@
 
-lisp/flycheck/flycheck.el:
+lisp/irony-mode/irony.el:
 	git submodule update --init $(dir $@)
+
+lisp/company-irony.el:
+	wget https://raw.githubusercontent.com/Sarcasm/company-irony/master/company-irony.el -O $@
+
+lisp/flycheck-irony.el:
+	wget https://raw.githubusercontent.com/Sarcasm/flycheck-irony/master/flycheck-irony.el -O $@
