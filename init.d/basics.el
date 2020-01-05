@@ -4,6 +4,7 @@
 ;; Set Ctrl-h and Alt-h as backspace
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\M-h" 'backward-kill-word)
+(define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
 
 ;; Help key binding
 (global-set-key (kbd "C-?") 'help)
