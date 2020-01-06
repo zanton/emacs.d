@@ -5,6 +5,7 @@
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\M-h" 'backward-kill-word)
 (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)
+(define-key isearch-mode-map (kbd "M-h") 'backward-kill-word)
 
 ;; Help key binding
 (global-set-key (kbd "C-?") 'help)
