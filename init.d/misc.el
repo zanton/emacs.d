@@ -25,3 +25,7 @@
 
 ;; Initial window size when Emacs is opened
 (when window-system (set-frame-size (selected-frame) 90 60))
+
+;; Making buffer names unique by uniquify
+ 30 (require 'uniquify)
+ 31 (setq uniquify-buffer-name-style 'reverse)
