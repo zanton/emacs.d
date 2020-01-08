@@ -6,7 +6,7 @@
  '(tool-bar-mode nil))
 
 ;; Show line number
-(global-linum-mode t)
+;(global-linum-mode t)
 (setq linum-format "%3d ")
 
 ;; Set default font size
@@ -27,5 +27,5 @@
 (when window-system (set-frame-size (selected-frame) 90 60))
 
 ;; Making buffer names unique by uniquify
- 30 (require 'uniquify)
- 31 (setq uniquify-buffer-name-style 'reverse)
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse)

@@ -14,11 +14,11 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; theme
- 17 (custom-set-faces
- 18  '(magit-diff-context ((((type tty)) (:foreground "white"))))
- 19  '(magit-diff-context-highlight ((((type tty)) (:foreground "white"))))
- 20  '(magit-diff-added ((((type tty)) (:foreground "green"))))
- 21  '(magit-diff-added-highlight ((((type tty)) (:foreground "green"))))
- 22  '(magit-diff-removed ((((type tty)) (:foreground "red"))))
- 23  '(magit-diff-removed-highlight ((((type tty)) (:foreground "red"))))
- 24  '(magit-section-highlight ((((type tty)) (:background "blue")))))
+(custom-set-faces
+ '(magit-diff-context ((((type tty)) (:foreground "white"))))
+ '(magit-diff-context-highlight ((((type tty)) (:foreground "white"))))
+ '(magit-diff-added ((((type tty)) (:foreground "green"))))
+ '(magit-diff-added-highlight ((((type tty)) (:foreground "green"))))
+ '(magit-diff-removed ((((type tty)) (:foreground "red"))))
+ '(magit-diff-removed-highlight ((((type tty)) (:foreground "red"))))
+ '(magit-section-highlight ((((type tty)) (:background "blue")))))

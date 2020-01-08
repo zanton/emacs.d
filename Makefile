@@ -1,85 +1,111 @@
+.DEFAULT_GOAL := all
+
 magit_ver=2.90.1
-
-all: lisp lang_modes highlight_pkgs completion_pkgs magit-$(magit_ver) helm utility_pkgs
-
-lisp:
-	mkdir -p lisp
+wget_opts=--no-check-certificate
 
 ## Language modes
-lang_modes: google-c-style markdown-mode cuda-mode cmake-mode lua-mode
+lang_modes  = # nothing yet
+lang_modes += google-c-style
+lang_modes += markdown-mode
+lang_modes += cuda-mode
+lang_modes += cmake-mode
+lang_modes += lua-mode
 
 google-c-style: lisp/google-c-style.el
-markdown-mode: lisp/markdown-mode.el
-cuda-mode: lisp/cuda-mode.el
-cmake-mode: lisp/cmake-mode.el
-lua-mode: lisp/lua-mode.el
-
 lisp/google-c-style.el:
-	wget https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el -O $@
+	wget https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el $(wget_opts) -O $@
 
+markdown-mode: lisp/markdown-mode.el
 lisp/markdown-mode.el:
-	wget https://raw.githubusercontent.com/jrblevin/markdown-mode/master/markdown-mode.el -O $@
+	wget https://raw.githubusercontent.com/jrblevin/markdown-mode/master/markdown-mode.el $(wget_opts) -O $@
 
+cuda-mode: lisp/cuda-mode.el
 lisp/cuda-mode.el:
-	wget https://raw.githubusercontent.com/chachi/cuda-mode/master/cuda-mode.el -O $@
+	wget https://raw.githubusercontent.com/chachi/cuda-mode/master/cuda-mode.el $(wget_opts) -O $@
 
+cmake-mode: lisp/cmake-mode.el
 lisp/cmake-mode.el:
-	wget https://raw.githubusercontent.com/Kitware/CMake/master/Auxiliary/cmake-mode.el -O $@
+	wget https://raw.githubusercontent.com/Kitware/CMake/master/Auxiliary/cmake-mode.el $(wget_opts) -O $@
 
+lua-mode: lisp/lua-mode.el
 lisp/lua-mode.el:
-	wget https://raw.githubusercontent.com/immerrr/lua-mode/master/lua-mode.el -O $@
+	wget https://raw.githubusercontent.com/immerrr/lua-mode/master/lua-mode.el $(wget_opts) -O $@
 
-## Highlight pkgs
-highlight_pkgs: highlight-symbol breadcrumb symbol-overlay highlight-indent-guides auto-highlight-symbol volatile-highlights bm
+## Packages
+lisp_dir = lisp
+$(lisp_dir):
+	mkdir -p $@
+
+## Highlight
+highlight_pkgs  = # nothing yet
+highlight_pkgs += highlight-symbol
+highlight_pkgs += breadcrumb
+highlight_pkgs += symbol-overlay
+highlight_pkgs += highlight-indent-guides
+highlight_pkgs += auto-highlight-symbol
+highlight_pkgs += volatile-highlights
+highlight_pkgs += bm
 
 highlight-symbol: lisp/highlight-symbol.el
-breadcrumb: lisp/breadcrumb.el
-symbol-overlay: lisp/symbol-overlay.el
-highlight-indent-guides: lisp/highlight-indent-guides.el
-auto-highlight-symbol: lisp/auto-highlight-symbol.el
-volatile-highlights: lisp/volatile-highlights.el
-bm: lisp/bm/bm.el
-
 lisp/highlight-symbol.el:
-	wget https://raw.githubusercontent.com/nschum/highlight-symbol.el/master/highlight-symbol.el -O $@
+	wget https://raw.githubusercontent.com/nschum/highlight-symbol.el/master/highlight-symbol.el $(wget_opts) -O $@
 
+breadcrumb: lisp/breadcrumb.el
 lisp/breadcrumb.el:
-	wget https://raw.githubusercontent.com/pheaver/breadcrumb/master/breadcrumb.el -O $@
+	wget https://raw.githubusercontent.com/pheaver/breadcrumb/master/breadcrumb.el $(wget_opts) -O $@
 
+symbol-overlay: lisp/symbol-overlay.el
 lisp/symbol-overlay.el:
-	wget https://raw.githubusercontent.com/wolray/symbol-overlay/master/symbol-overlay.el -O $@
+	wget https://raw.githubusercontent.com/wolray/symbol-overlay/master/symbol-overlay.el $(wget_opts) -O $@
 
+highlight-indent-guides: lisp/highlight-indent-guides.el
 lisp/highlight-indent-guides.el:
-	wget https://raw.githubusercontent.com/DarthFennec/highlight-indent-guides/master/highlight-indent-guides.el -O $@
+	wget https://raw.githubusercontent.com/DarthFennec/highlight-indent-guides/master/highlight-indent-guides.el $(wget_opts) -O $@
 
+auto-highlight-symbol: lisp/auto-highlight-symbol.el
 lisp/auto-highlight-symbol.el:
-	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol.el -O $@
-	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol-config.el -c -P $(dir $@)
+	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol.el $(wget_opts) -O $@
+	wget https://raw.githubusercontent.com/mhayashi1120/auto-highlight-symbol-mode/master/auto-highlight-symbol-config.el $(wget_opts) -c -P $(dir $@)
 
+volatile-highlights: lisp/volatile-highlights.el
 lisp/volatile-highlights.el:
-	wget https://raw.githubusercontent.com/k-talo/volatile-highlights.el/master/volatile-highlights.el -O $@
+	wget https://raw.githubusercontent.com/k-talo/volatile-highlights.el/master/volatile-highlights.el $(wget_opts) -O $@
 
+bm: lisp/bm/bm.el
 lisp/bm/bm.el:
 	git submodule update --init $(dir $@)
 
-## Completion pkgs
-completion_pkgs: company-mode auto-complete
+## Completion
+completion_pkgs  = # nothing yet
+completion_pkgs += company-mode
+completion_pkgs += auto-complete
 
 company-mode: lisp/company-mode/company.el
-auto-complete: lisp/auto-complete/auto-complete.el popup
-popup: lisp/popup.el
-
 lisp/company-mode/company.el:
 	git submodule update --init $(dir $@)
 
+auto-complete: lisp/auto-complete/auto-complete.el popup
 lisp/auto-complete/auto-complete.el:
 	git submodule update --init $(dir $@)
 
+popup: lisp/popup.el
 lisp/popup.el:
-	wget https://raw.githubusercontent.com/auto-complete/popup-el/master/popup.el -O $@
+	wget https://raw.githubusercontent.com/auto-complete/popup-el/master/popup.el $(wget_opts) -O $@
 
 ## Magit
-magit: dash with-editor ghub graphql treepy libegit2 transient lisp/magit/lisp/magit.el
+magit  = # nothing yet
+magit += dash
+magit += with-editor
+magit += ghub
+magit += graphql
+magit += treepy
+### for repository instance
+# magit += libegit2
+# magit += transient
+# magit += lisp/magit/lisp/magit.el
+### for package instance
+magit += magit-popup
+magit += lisp/magit-$(magit_ver)/lisp/magit.el
 
 lisp/magit/lisp/magit.el:
 	git submodule update --init lisp/magit
@@ -92,8 +118,6 @@ lisp/magit/lisp/magit.el:
 	echo "LOAD_PATH += -L $(PWD)/lisp/treepy" >> lisp/magit/config.mk
 	echo "LOAD_PATH += -L $(PWD)/lisp/libegit2" >> lisp/magit/config.mk
 	cd lisp/magit; make
-
-magit-$(magit_ver): dash with-editor ghub graphql treepy magit-popup lisp/magit-$(magit_ver)/lisp/magit.el
 
 lisp/magit-$(magit_ver)/lisp/magit.el:
 	wget https://github.com/magit/magit/releases/download/v$(magit_ver)/magit-$(magit_ver).tar.gz
@@ -110,46 +134,48 @@ lisp/magit-$(magit_ver)/lisp/magit.el:
 	cd lisp/magit-$(magit_ver); make
 
 dash: lisp/dash/dash.el
-with-editor: lisp/with-editor/with-editor.el
-ghub: lisp/ghub/ghub.el
-graphql: lisp/graphql/graphql.el
-treepy: lisp/treepy/treepy.el
-libegit2: lisp/libegit2/libgit.el
-transient: lisp/transient.el
-magit-popup: lisp/magit-popup.el
-
 lisp/dash/dash.el:
 	git submodule update --init $(dir $@)
 
+with-editor: lisp/with-editor/with-editor.el
 lisp/with-editor/with-editor.el:
 	git submodule update --init $(dir $@)
 
+ghub: lisp/ghub/ghub.el
 lisp/ghub/ghub.el:
 	git submodule update --init $(dir $@)
 
+graphql: lisp/graphql/graphql.el
 lisp/graphql/graphql.el:
 	git submodule update --init $(dir $@)
 
+treepy: lisp/treepy/treepy.el
 lisp/treepy/treepy.el:
 	git submodule update --init $(dir $@)
 
+libegit2: lisp/libegit2/libgit.el
 lisp/libegit2/libgit.el:
 	git submodule update --init $(dir $@)
 	cd $(dir $@); git submodule update --init
 	mkdir -p $(dir $@)/build
 	cd $(dir $@)/build; cmake ..; make
 
+transient: lisp/transient.el
 lisp/transient.el:
-	wget https://raw.githubusercontent.com/magit/transient/master/lisp/transient.el -O $@
+	wget https://raw.githubusercontent.com/magit/transient/master/lisp/transient.el $(wget_opts) -O $@
 
+magit-popup: lisp/magit-popup.el
 lisp/magit-popup.el:
-	wget https://raw.githubusercontent.com/magit/magit-popup/master/magit-popup.el -O $@
+	wget https://raw.githubusercontent.com/magit/magit-popup/master/magit-popup.el $(wget_opts) -O $@
 
 ## Helm
-helm: async lisp/helm/helm.el helm-swoop helm-gtags
+helm  = # nothing yet
+helm += async
+helm += lisp/helm/helm.el
+helm += helm-swoop
+helm += helm-gtags
 
 async: lisp/async/async.el
-
 lisp/async/async.el:
 	git submodule update --init $(dir $@)
 
@@ -158,47 +184,55 @@ lisp/helm/helm.el:
 	cd $(dir $@); EMACSLOADPATH="$(PWD)/lisp/async:" make
 
 helm-swoop: lisp/helm-swoop.el
-
 lisp/helm-swoop.el:
-	wget https://raw.githubusercontent.com/emacsorphanage/helm-swoop/master/helm-swoop.el -O $@
+	wget https://raw.githubusercontent.com/emacsorphanage/helm-swoop/master/helm-swoop.el $(wget_opts) -O $@
 
 helm-gtags: lisp/helm-gtags.el
-
 lisp/helm-gtags.el:
-	wget https://raw.githubusercontent.com/syohex/emacs-helm-gtags/master/helm-gtags.el -O $@
+	wget https://raw.githubusercontent.com/syohex/emacs-helm-gtags/master/helm-gtags.el $(wget_opts) -O $@
 
 ## Utility pkgs
-utility_pkgs: thing-edit quickrun popwin flycheck undo-tree irony company-irony flycheck-irony
+utility_pkgs += # nothing yet
+utility_pkgs += thing-edit
+utility_pkgs += quickrun
+utility_pkgs += popwin
+utility_pkgs += flycheck
+utility_pkgs += undo-tree
+utility_pkgs += irony
+utility_pkgs += company-irony
+utility_pkgs += flycheck-irony
 
 thing-edit: lisp/thing-edit.el
-quickrun: lisp/quickrun.el
-popwin: lisp/popwin.el
-flycheck: lisp/flycheck/flycheck.el
-undo-tree: lisp/undo-tree.el
-irony: lisp/irony-mode/irony.el
-company-irony: lisp/company-irony.el
-flycheck-irony: lisp/flycheck-irony.el
-
 lisp/thing-edit.el:
-	wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/thing-edit.el -O $@
+	wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/thing-edit.el $(wget_opts) -O $@
 
+quickrun: lisp/quickrun.el
 lisp/quickrun.el:
-	wget https://raw.githubusercontent.com/syohex/emacs-quickrun/master/quickrun.el -O $@
+	wget https://raw.githubusercontent.com/syohex/emacs-quickrun/master/quickrun.el $(wget_opts) -O $@
 
+popwin: lisp/popwin.el
 lisp/popwin.el:
-	wget https://raw.githubusercontent.com/m2ym/popwin-el/master/popwin.el -O $@
+	wget https://raw.githubusercontent.com/m2ym/popwin-el/master/popwin.el $(wget_opts) -O $@
 
+flycheck: lisp/flycheck/flycheck.el
 lisp/flycheck/flycheck.el:
 	git submodule update --init $(dir $@)
 
+undo-tree: lisp/undo-tree.el
 lisp/undo-tree.el:
-	wget http://www.dr-qubit.org/undo-tree/undo-tree.el -O $@
+	wget http://www.dr-qubit.org/undo-tree/undo-tree.el $(wget_opts) -O $@
 
+irony: lisp/irony-mode/irony.el
 lisp/irony-mode/irony.el:
 	git submodule update --init $(dir $@)
 
+company-irony: lisp/company-irony.el
 lisp/company-irony.el:
-	wget https://raw.githubusercontent.com/Sarcasm/company-irony/master/company-irony.el -O $@
+	wget https://raw.githubusercontent.com/Sarcasm/company-irony/master/company-irony.el $(wget_opts) -O $@
 
+flycheck-irony: lisp/flycheck-irony.el
 lisp/flycheck-irony.el:
-	wget https://raw.githubusercontent.com/Sarcasm/flycheck-irony/master/flycheck-irony.el -O $@
+	wget https://raw.githubusercontent.com/Sarcasm/flycheck-irony/master/flycheck-irony.el $(wget_opts) -O $@
+
+## all
+all: $(lisp_dir) $(lang_modes) $(highlight_pkgs) $(completion_pkgs) $(magit) $(helm) $(utility_pkgs)

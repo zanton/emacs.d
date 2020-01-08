@@ -19,7 +19,7 @@
 (load-file (concat init-dir "/highlight_symbol.el"))
 ;(load-file (concat init-dir "/breadcrumb.el")) ;; similar to bm.el
 (load-file (concat init-dir "/symbol_overlay.el"))
-(load-file (concat init-dir "/highlight_indent_guides.el"))
+;(load-file (concat init-dir "/highlight_indent_guides.el"))
 ;(load-file (concat init-dir "/auto_highlight_symbol.el")) ;; hijack M-<left> M-<right>
 (load-file (concat init-dir "/volatile_highlights.el"))
 (load-file (concat init-dir "/bm.el"))
@@ -41,7 +41,7 @@
 (load-file (concat init-dir "/quickrun.el"))
 ;(load-file (concat init-dir "/popwin.el"))
 (load-file (concat init-dir "/flycheck.el"))
-(load-file (concat init-dir "/undo_tree.el"))
+;(load-file (concat init-dir "/undo_tree.el"))
 (load-file (concat init-dir "/irony.el"))
 
 ;;(package-initialize)
