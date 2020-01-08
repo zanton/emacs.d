@@ -114,3 +114,6 @@
 
 ;; Eval buffer
 (global-set-key (kbd "C-x C-e") 'eval-buffer)
+
+;; TAGS: load another TAGS file
+(global-set-key (kbd "C-c M-.") 'visit-tags-table)

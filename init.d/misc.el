@@ -20,9 +20,6 @@
 ;;(load-theme 'dark-laptop) ;; Emacs in own window
 ;;(load-theme 'wombat)      ;; Emacs in tty
 
-;; load another TAGS file
-(global-set-key (kbd "C-c M-.") 'visit-tags-table)
-
 ;; Initial window size when Emacs is opened
 (when window-system (set-frame-size (selected-frame) 90 60))
 
