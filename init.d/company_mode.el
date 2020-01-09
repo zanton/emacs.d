@@ -2,7 +2,10 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode")
 (require 'company)
 
-(global-company-mode)
+;(global-company-mode)
+(add-hook 'c-mode-hook 'company-mode)
+(add-hook 'c++-mode-hook 'company-mode)
+(add-hook 'lua-mode-hook 'company-mode)
 (setq company-idle-delay 0.3)
 (setq company-minimum-prefix-length 2)
 (setq company-selection-wrap-around t)
