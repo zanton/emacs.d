@@ -99,8 +99,9 @@
 (define-key global-map (kbd "C-+") 'text-scale-increase)
 (define-key global-map (kbd "C--") 'text-scale-decrease)
 
-;; Turn off backup files
+;; Disable backup & auto-save files
 (setq make-backup-files nil)
+(setq auto-save-default nil)
 
 ;; Switch windows
 (global-set-key (kbd "C-o") 'other-window)
