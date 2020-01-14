@@ -38,10 +38,6 @@ init_scripts += $(init_dir)/irony.el
 
 $(init_scripts):
 	wget https://raw.githubusercontent.com/zanton/emacs.d/master/$@ $(wget_opts) -O $@
-	sed -i 's/^.*markdown_mode.el.*/;&/' init.el
-	sed -i 's/^.*flycheck.el.*/;&/' init.el
-	sed -i 's/^.*irony.el.*/;&/' init.el
-	sed -i "/\(require 'company\)/a \(delete 'company-clang company-backends\)" init.d/company_mode.el
 
 ## Packages
 lisp_dir = lisp
@@ -70,7 +66,7 @@ $(lisp_dir)/bm/bm.el:
 ## Completion
 company-mode: $(lisp_dir)/company-mode/company.el
 
-$(lisp_dir)/company-mode/company.el: name=company-20200102.2354
+$(lisp_dir)/company-mode/company.el: name=company-20200110.929
 $(lisp_dir)/company-mode/company.el:
 	wget https://melpa.org/packages/${name}.tar ${wget_opts} -O ${name}.tar
 	tar xvf ${name}.tar
@@ -152,10 +148,10 @@ helm: async $(lisp_dir)/helm/helm.el
 
 $(lisp_dir)/helm/helm.el: name=helm-3.6.0
 $(lisp_dir)/helm/helm.el:
-	wget https://github.com/emacs-helm/helm/archive/v3.6.0.tar.gz ${wget_opts} -O ${name}.tar.gz
-	tar xzvf ${name}.tar.gz
+	wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/helm/3.5.0-3/helm_3.5.0.orig.tar.xz ${wget_opts} -O ${name}.tar.xz
+	tar xvf ${name}.tar.xz
 	mkdir -p $(dir $@); cp -r ${name}/* $(dir $@)
-	rm -rf ${name} ${name}.tar.gz
+	rm -rf ${name} ${name}.tar.xz
 	cd $(dir $@); EMACSLOADPATH="$(PWD)/$(lisp_dir)/async:" make
 
 async: $(lisp_dir)/async/async.el
@@ -203,3 +199,7 @@ cppcheck:
 
 ## all
 all: $(init_dir) $(init_scripts) $(lisp_dir) $(pkgs)
+	sed -i 's/^.*markdown_mode.el.*/;&/' init.el
+	sed -i 's/^.*flycheck.el.*/;&/' init.el
+	sed -i 's/^.*irony.el.*/;&/' init.el
+	sed -i "/\(require 'company\)/a \(delete 'company-clang company-backends\)" init.d/company_mode.el
