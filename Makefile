@@ -220,7 +220,7 @@ $(lisp_dir)/flycheck/flycheck.el:
 
 undo-tree: $(lisp_dir)/undo-tree.el
 $(lisp_dir)/undo-tree.el:
-	wget http://www.dr-qubit.org/undo-tree/undo-tree.el $(wget_opts) -O $@
+	wget https://raw.githubusercontent.com/apchamberlain/undo-tree.el/help-in-visualizer-frame/undo-tree.el $(wget_opts) -O $@
 
 irony: $(lisp_dir)/irony-mode/irony.el
 $(lisp_dir)/irony-mode/irony.el:
