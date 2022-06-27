@@ -22,3 +22,6 @@
  '(magit-diff-removed ((((type tty)) (:foreground "red"))))
  '(magit-diff-removed-highlight ((((type tty)) (:foreground "red"))))
  '(magit-section-highlight ((((type tty)) (:background "blue")))))
+
+;; No uniquifying buffer names in order to have asterisk prefix/suffix
+(setq-default magit-uniquify-buffer-names nil)

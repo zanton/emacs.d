@@ -67,6 +67,9 @@
 (global-set-key [(meta prior)] 'scroll-other-down-couple-lines)
 (global-set-key [(meta next)] 'scroll-other-up-couple-lines)
 
+;; Move to previous window (reverse of other-window [C-x o])
+(global-set-key (kbd "C-x O") 'previous-multiframe-window)
+
 ;; Rotate all buffers (including emacs's ones)
 (global-set-key [(meta right)] 'next-buffer)
 (global-set-key [(meta left)] 'previous-buffer)
@@ -118,3 +121,20 @@
 
 ;; TAGS: load another TAGS file
 (global-set-key (kbd "C-c M-.") 'visit-tags-table)
+
+;; org-mode
+(require 'org)
+(define-key org-mode-map (kbd "M-h") 'backward-kill-word)
+(setq org-cycle-separator-lines 1)
+;;; checkbox for headers
+(defun org-toggle-headine-checkbox ()
+  "Toggle checkbox marker in headlines."
+  (interactive)
+  (when (and (org-at-heading-p)
+             (save-excursion
+               (beginning-of-line)
+               (looking-at "\\*+ +\\[\\(?1:[X ]?\\)\\]")))
+    (let ((state (string= (match-string 1) "X")))
+      (save-excursion
+        (replace-match (format "%s" (if state " " "X")) nil t nil 1)))))
+(define-key org-mode-map (kbd "C-c c") 'org-toggle-headine-checkbox)

@@ -34,7 +34,8 @@ $(lisp_dir)/cmake-mode.el:
 
 lua-mode: $(lisp_dir)/lua-mode.el
 $(lisp_dir)/lua-mode.el:
-	wget https://raw.githubusercontent.com/immerrr/lua-mode/master/lua-mode.el $(wget_opts) -O $@
+	wget https://raw.githubusercontent.com/immerrr/lua-mode/v20151025/lua-mode.el $(wget_opts) -O $@
+	#wget https://raw.githubusercontent.com/immerrr/lua-mode/master/lua-mode.el $(wget_opts) -O $@
 
 ## Highlight
 highlight_pkgs  = # nothing yet

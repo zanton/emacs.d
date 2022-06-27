@@ -156,7 +156,7 @@ $(lisp_dir)/helm/helm.el:
 
 async: $(lisp_dir)/async/async.el
 
-$(lisp_dir)/async/async.el: name=async-20191226.1227
+$(lisp_dir)/async/async.el: name=async-20200113.1745
 $(lisp_dir)/async/async.el:
 	wget https://melpa.org/packages/${name}.tar ${wget_opts} -O ${name}.tar
 	tar xvf ${name}.tar
@@ -203,3 +203,20 @@ all: $(init_dir) $(init_scripts) $(lisp_dir) $(pkgs)
 	sed -i 's/^.*flycheck.el.*/;&/' init.el
 	sed -i 's/^.*irony.el.*/;&/' init.el
 	sed -i "/\(require 'company\)/a \(delete 'company-clang company-backends\)" init.d/company_mode.el
+
+llvm:
+	wget http://releases.llvm.org/9.0.0/llvm-9.0.0.src.tar.xz
+	tar xvf llvm-9.0.0.src.tar.xz
+	cd llvm-9.0.0.src/
+	mkdir build
+	cd build
+	cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/local -DCMAKE_PREFIX_PATH=$HOME/local -DCMAKE_BUILD_TYPE=Release -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="AVR" -DLLVM_ENABLE_LIBXML2=OFF
+	make install
+
+clang:
+	wget http://releases.llvm.org/9.0.0/cfe-9.0.0.src.tar.xz
+	tar xvf cfe-9.0.0.src.tar.xz
+	cd cfe-9.0.0.src/
+	mkdir build
+	cd build
+	cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/local -DCMAKE_PREFIX_PATH=$HOME/local -DCMAKE_BUILD_TYPE=Release

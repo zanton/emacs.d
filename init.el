@@ -10,7 +10,7 @@
 
 ;; Language modes
 (load-file (concat init-dir "/c_mode.el"))
-(load-file (concat init-dir "/markdown_mode.el"))
+;(load-file (concat init-dir "/markdown_mode.el"))
 (load-file (concat init-dir "/cuda_mode.el"))
 (load-file (concat init-dir "/cmake_mode.el"))
 (load-file (concat init-dir "/lua_mode.el"))
@@ -40,9 +40,9 @@
 (load-file (concat init-dir "/thing_edit.el"))
 (load-file (concat init-dir "/quickrun.el"))
 ;(load-file (concat init-dir "/popwin.el"))
-(load-file (concat init-dir "/flycheck.el"))
+;(load-file (concat init-dir "/flycheck.el"))
 ;(load-file (concat init-dir "/undo_tree.el"))
-(load-file (concat init-dir "/irony.el"))
+;(load-file (concat init-dir "/irony.el"))
 
 ;;(package-initialize)
 

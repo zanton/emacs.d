@@ -1,6 +1,7 @@
 ;; company mode
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode")
 (require 'company)
+(delete 'company-clang company-backends)
 
 ;(global-company-mode)
 (add-hook 'c-mode-hook 'company-mode)
